@@ -9,5 +9,14 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.andela.cityweatherforecast.homescreen.HomeScreenFragment"
         android:label="City Weather Forecast"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@+id/homeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.andela.cityweatherforecast.map.MapsFragment"
+        android:label="Map" />
 </navigation>

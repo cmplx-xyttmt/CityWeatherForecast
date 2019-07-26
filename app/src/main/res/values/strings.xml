@@ -4,4 +4,5 @@
     <string name="view_map_string">View Map</string>
     <string name="view_bookmarks_string">View Bookmarks</string>
     <string name="logo_text">logo</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
