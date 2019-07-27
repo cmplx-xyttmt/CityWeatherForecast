@@ -14,9 +14,18 @@
             android:id="@+id/action_homeScreenFragment_to_mapsFragment"
             app:destination="@id/mapsFragment"
             app:popUpTo="@+id/homeScreenFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_bookmarksFragment"
+            app:destination="@id/bookmarksFragment"
+            app:popUpTo="@+id/homeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.andela.cityweatherforecast.map.MapsFragment"
         android:label="Map" />
+    <fragment
+        android:id="@+id/bookmarksFragment"
+        android:name="com.andela.cityweatherforecast.bookmarks.BookmarksFragment"
+        android:label="Bookmarked Cities"
+        tools:layout="@layout/fragment_bookmarks" />
 </navigation>

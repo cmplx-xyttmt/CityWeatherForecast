@@ -20,6 +20,10 @@ class HomeScreenFragment : Fragment() {
             it.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToMapsFragment())
         }
 
+        binding.viewBookmarksButton.setOnClickListener {
+            it.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToBookmarksFragment())
+        }
+
         return binding.root
     }
 }
