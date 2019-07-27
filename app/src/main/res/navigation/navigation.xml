@@ -22,7 +22,12 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.andela.cityweatherforecast.map.MapsFragment"
-        android:label="Map" />
+        android:label="Map" >
+        <action
+            android:id="@+id/action_mapsFragment_to_bookmarksFragment"
+            app:destination="@id/bookmarksFragment"
+            app:popUpTo="@+id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookmarksFragment"
         android:name="com.andela.cityweatherforecast.bookmarks.BookmarksFragment"

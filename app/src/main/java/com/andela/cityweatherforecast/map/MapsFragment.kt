@@ -2,13 +2,17 @@ package com.andela.cityweatherforecast.map
 
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.andela.cityweatherforecast.R
+import com.andela.cityweatherforecast.bookmarks.ConfirmBookmarkDialog
 import com.andela.cityweatherforecast.databinding.FragmentMapsBinding
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,13 +23,14 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.io.IOException
 
-class MapsFragment : Fragment(), OnMapReadyCallback {
+class MapsFragment : Fragment(), OnMapReadyCallback, ConfirmBookmarkDialog.ConfirmBookmarkDialogListener {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var binding: FragmentMapsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentMapsBinding>(inflater, R.layout.fragment_maps, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_maps, container, false)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = childFragmentManager
@@ -55,7 +60,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         setMapLongClick(mMap)
 
         mMap.setOnInfoWindowClickListener {
-            Toast.makeText(activity, "Clicked on bookmark", Toast.LENGTH_SHORT).show()
+            showConfirmBookmarkDialog(it.snippet)
         }
     }
 
@@ -85,5 +90,25 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                 )
             }
         }
+    }
+
+    private fun showConfirmBookmarkDialog(snippet: String) {
+        val dialog = ConfirmBookmarkDialog()
+        dialog.setTargetFragment(this, 0)
+        val bundle = Bundle()
+        bundle.putString("city_string", snippet)
+        dialog.arguments = bundle
+        dialog.show(fragmentManager, "ConfirmBookmarkDialog")
+    }
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToBookmarksFragment())
+        // TODO("Add selected city to bookmarks")
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {
+        Log.i("MapsFragment", "Cancel clicked")
+        // Probably don't need this
+
     }
 }

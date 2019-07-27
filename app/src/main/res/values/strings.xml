@@ -7,4 +7,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="latitude_text">Lat: %.2f</string>
     <string name="longitude_text">Long: %.2f</string>
+    <string name="confirm_bookmark_string">Confirm Bookmark</string>
+    <string name="extra_information_string">Any extra information?</string>
+    <string name="confirm_string">Confirm</string>
+    <string name="cancel_string">Cancel</string>
 </resources>
