@@ -5,4 +5,6 @@
     <string name="view_bookmarks_string">View Bookmarks</string>
     <string name="logo_text">logo</string>
     <string name="title_activity_maps">Map</string>
+    <string name="latitude_text">Lat: %.2f</string>
+    <string name="longitude_text">Long: %.2f</string>
 </resources>
