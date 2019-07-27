@@ -1,9 +1,11 @@
 package com.andela.cityweatherforecast.map
 
+import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.andela.cityweatherforecast.R
@@ -15,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.io.IOException
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
 
@@ -48,5 +51,39 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+        setMapLongClick(mMap)
+
+        mMap.setOnInfoWindowClickListener {
+            Toast.makeText(activity, "Clicked on bookmark", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun geoLocate(coordinates: LatLng): String? {
+        val geocoder = Geocoder(this.context)
+
+        try {
+            val address = geocoder.getFromLocation(coordinates.latitude, coordinates.longitude, 1)[0]
+            return "City: ${address.subAdminArea ?: address.adminArea}, Country: ${address.countryName}"
+        } catch (ioException: IOException) {
+            Toast.makeText(activity, "Cannot retrieve location data at the moment", Toast.LENGTH_LONG).show()
+        }
+
+        return null
+    }
+
+    private fun setMapLongClick(map: GoogleMap) {
+        map.setOnMapLongClickListener { latLng ->
+            val snippetText = geoLocate(latLng)
+            if (snippetText != null) {
+                map.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .title("Click to bookmark city")
+                        .snippet(snippetText)
+                        .draggable(true)
+                )
+            }
+        }
     }
 }
