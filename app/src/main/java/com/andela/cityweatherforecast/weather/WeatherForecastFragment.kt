@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.andela.cityweatherforecast.R
 import com.andela.cityweatherforecast.databinding.FragmentWeatherForecastBinding
 
@@ -19,7 +20,8 @@ class WeatherForecastFragment : Fragment() {
             false
         )
 
-
+        val viewModel = ViewModelProviders.of(this).get(WeatherForecastViewModel::class.java)
+        viewModel.weatherForecastList
         return binding.root
     }
 }
