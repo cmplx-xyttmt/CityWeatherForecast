@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.andela.cityweatherforecast.R
+import com.andela.cityweatherforecast.bookmarks.viewmodel.BookmarksViewModel
+import com.andela.cityweatherforecast.bookmarks.viewmodel.BookmarksViewModelFactory
+import com.andela.cityweatherforecast.data.CityBookmarkDatabase
 import com.andela.cityweatherforecast.databinding.FragmentBookmarksBinding
 
 class BookmarksFragment : Fragment() {
@@ -25,7 +28,13 @@ class BookmarksFragment : Fragment() {
 //        val manager = GridLayoutManager(activity, 2)
 //        binding.bookmarkedCitiesList.layoutManager = manager
 
-        val bookmarksViewModel = ViewModelProviders.of(this).get(BookmarksViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = CityBookmarkDatabase.getInstance(application).cityDao
+
+        val viewModelFactory = BookmarksViewModelFactory(dataSource, application)
+        val bookmarksViewModel = ViewModelProviders.of(this, viewModelFactory).get(BookmarksViewModel::class.java)
+
         binding.lifecycleOwner = this
 
         bookmarksViewModel.bookMarkedCities.observe(viewLifecycleOwner, Observer {

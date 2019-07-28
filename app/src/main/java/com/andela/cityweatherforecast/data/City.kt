@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bookmarked_cities_table")
 data class City(
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "city_name")
     val cityName: String,
@@ -16,8 +16,12 @@ data class City(
     val countryName: String,
 
     @ColumnInfo(name = "latitude")
-    val latitude: Float,
+    val latitude: Double,
 
     @ColumnInfo(name = "longitude")
-    val longitude: Float
-)
+    val longitude: Double
+) {
+    fun cityCountryString(): String {
+        return "City: $cityName, Country: $countryName"
+    }
+}
