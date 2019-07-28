@@ -1,5 +1,6 @@
 package com.andela.cityweatherforecast.weather
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,6 +35,8 @@ class WeatherForecastViewModel : ViewModel() {
                 _weatherForecastList.value = result.weatherForecasts
             } catch (e: Exception) {
                 // TODO: Handle error
+                Log.i("WeatherForecastViewMl", "An error occurred while fetching weather data ${e.localizedMessage}")
+                _weatherForecastList.value = null
             }
         }
     }

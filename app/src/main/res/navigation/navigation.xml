@@ -36,11 +36,16 @@
         tools:layout="@layout/fragment_bookmarks" >
         <action
             android:id="@+id/action_bookmarksFragment_to_weatherForecastFragment"
-            app:destination="@id/weatherForecastFragment" />
+            app:destination="@id/weatherForecastFragment"
+            app:popUpTo="@+id/bookmarksFragment" />
     </fragment>
     <fragment
         android:id="@+id/weatherForecastFragment"
         android:name="com.andela.cityweatherforecast.weather.WeatherForecastFragment"
         android:label="Weather Forecast"
-        tools:layout="@layout/fragment_weather_forecast" />
+        tools:layout="@layout/fragment_weather_forecast" >
+        <argument
+            android:name="city"
+            app:argType="com.andela.cityweatherforecast.data.City"/>
+    </fragment>
 </navigation>

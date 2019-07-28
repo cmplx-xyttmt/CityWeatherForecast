@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL = "https://api.openweathermap.org/data/2.5/forecast/"
+private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 private const val API_KEY = BuildConfig.WEATHER_API_KEY
 
 private val moshi = Moshi.Builder()
@@ -25,9 +25,11 @@ private val retrofit = Retrofit.Builder()
 
 interface WeatherApiService {
 
-    @GET("forecast/daily")
-    fun getFiveDayForecastAsync(@Query("latitude") latitude: Double,
-                                @Query("longitude") longitude: Double, @Query("appid") appid: String = API_KEY): Deferred<Response>
+    @GET("forecast")
+    fun getFiveDayForecastAsync(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double, @Query("cnt") count: Int = 5, @Query("appid") appid: String = API_KEY
+    ): Deferred<Response>
 }
 
 object WeatherApi {

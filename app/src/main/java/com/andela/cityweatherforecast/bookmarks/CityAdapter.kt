@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andela.cityweatherforecast.data.City
 import com.andela.cityweatherforecast.databinding.ListItemBookmarkedCityBinding
 
-class CityAdapter : ListAdapter<City, CityAdapter.ViewHolder>(CityDiffCallBack()) {
+class CityAdapter(private val onClickListener: OnClickListener) : ListAdapter<City, CityAdapter.ViewHolder>(CityDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -16,6 +16,9 @@ class CityAdapter : ListAdapter<City, CityAdapter.ViewHolder>(CityDiffCallBack()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
@@ -35,6 +38,10 @@ class CityAdapter : ListAdapter<City, CityAdapter.ViewHolder>(CityDiffCallBack()
                 return ViewHolder(binding)
             }
         }
+    }
+
+    class OnClickListener(val clickListener: (city: City) -> Unit) {
+        fun onClick(city: City) = clickListener(city)
     }
 }
 

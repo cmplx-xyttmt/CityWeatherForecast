@@ -10,12 +10,15 @@ data class Response(
 data class WeatherForecast(
     @Json(name = "dt")
     val date: Long,
+    @Json(name = "main")
     val temp: Temperature,
-    val weather: Weather
+    val weather: List<Weather>
 )
 
 data class Temperature(
+    @Json(name = "temp_min")
     val min: Double,
+    @Json(name = "temp_max")
     val max: Double
 )
 

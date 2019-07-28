@@ -1,9 +1,12 @@
 package com.andela.cityweatherforecast.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "bookmarked_cities_table")
 data class City(
     @PrimaryKey(autoGenerate = true)
@@ -20,7 +23,7 @@ data class City(
 
     @ColumnInfo(name = "longitude")
     val longitude: Double
-) {
+) : Parcelable {
     fun cityCountryString(): String {
         return "City: $cityName, Country: $countryName"
     }
