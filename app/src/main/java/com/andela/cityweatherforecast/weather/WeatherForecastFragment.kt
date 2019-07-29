@@ -25,6 +25,8 @@ class WeatherForecastFragment : Fragment() {
             false
         )
         currentCity = WeatherForecastFragmentArgs.fromBundle(arguments!!).city
+        binding.weatherCityName.text =
+            context!!.resources.getString(R.string.weather_forecast_title, currentCity.cityName)
 
         val viewModel = ViewModelProviders.of(this).get(WeatherForecastViewModel::class.java)
         viewModel.currentCity = currentCity
