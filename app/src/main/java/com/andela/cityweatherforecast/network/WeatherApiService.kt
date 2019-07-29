@@ -28,7 +28,7 @@ interface WeatherApiService {
     @GET("forecast")
     fun getFiveDayForecastAsync(
         @Query("lat") latitude: Double,
-        @Query("lon") longitude: Double, @Query("cnt") count: Int = 5, @Query("appid") appid: String = API_KEY
+        @Query("lon") longitude: Double, @Query("appid") appid: String = API_KEY
     ): Deferred<Response>
 }
 

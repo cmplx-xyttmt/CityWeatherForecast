@@ -8,11 +8,11 @@ data class Response(
 )
 
 data class WeatherForecast(
-    @Json(name = "dt")
-    val date: Long,
     @Json(name = "main")
     val temp: Temperature,
-    val weather: List<Weather>
+    val weather: List<Weather>,
+    @Json(name = "dt_txt")
+    val date: String
 )
 
 data class Temperature(
@@ -24,5 +24,6 @@ data class Temperature(
 
 data class Weather(
     val main: String,
-    val description: String
+    val description: String,
+    val icon: String
 )

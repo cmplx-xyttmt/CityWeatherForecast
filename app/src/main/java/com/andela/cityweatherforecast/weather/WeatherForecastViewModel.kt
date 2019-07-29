@@ -17,7 +17,7 @@ class WeatherForecastViewModel : ViewModel() {
 
     private var viewModelJob = Job()
     private val couroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    lateinit var currentCity: City
+    var currentCity: City? = null
     private val _weatherForecastList = MutableLiveData<List<WeatherForecast>>()
     val weatherForecastList: LiveData<List<WeatherForecast>>
         get() = _weatherForecastList
@@ -29,7 +29,7 @@ class WeatherForecastViewModel : ViewModel() {
     private fun getWeatherForecastList() {
         couroutineScope.launch {
             val getFiveDayForecastDeferred =
-                WeatherApi.retrofitService.getFiveDayForecastAsync(currentCity.latitude, currentCity.longitude)
+                WeatherApi.retrofitService.getFiveDayForecastAsync(currentCity!!.latitude, currentCity!!.longitude)
             try {
                 val result = getFiveDayForecastDeferred.await()
                 _weatherForecastList.value = result.weatherForecasts

@@ -12,4 +12,6 @@
     <string name="confirm_string">Confirm</string>
     <string name="cancel_string">Cancel</string>
     <string name="weather_icon_description">weather icon</string>
+    <string name="min_weather_display">Min: %.2f deg</string>
+    <string name="max_weather_display">Max: %.2f deg</string>
 </resources>
