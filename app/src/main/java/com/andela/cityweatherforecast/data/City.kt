@@ -25,6 +25,6 @@ data class City(
     val longitude: Double
 ) : Parcelable {
     fun cityCountryString(): String {
-        return "City: $cityName, Country: $countryName"
+        return "$cityName, $countryName"
     }
 }
