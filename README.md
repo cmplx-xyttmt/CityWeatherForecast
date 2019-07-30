@@ -3,8 +3,12 @@
 City Weather Forecast is an android application that allows users to bookmark cities on a map
 and view weather forecasts for their bookmarked cities.
 
-### Screencast
-![App gif](screenshots/ezgif.com-resize.gif)
+### Screenshots
+![Home Screen](screenshots/home-screen.png) 
+![Map Screen](screenshots/map-screen.png)
+![Confirm Bookmark Screen](screenshots/confirm-bookmark-screen.png)
+![Bookmarks Screen](screenshots/bookmarks-screen.png)
+![Weather Forecast Screen](screenshots/weather-forecast-screen.png)
 
 ### Technical Details
 Here are some technical details for this app:
